@@ -12051,9 +12051,7 @@ var lunr=function(t){var e=new lunr.Index;return e.pipeline.add(lunr.stopWordFil
     options = $.extend({}, $.fn.lunrSearch.defaults, options);      
 
     // create search object
-    new LunrSearch(this, options);
-    
-    return this;
+    return new LunrSearch(this, options);
   };
   
   $.fn.lunrSearch.defaults = {

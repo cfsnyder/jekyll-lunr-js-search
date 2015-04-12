@@ -133,11 +133,6 @@ module Jekyll
   end
 end
 module Jekyll
-  module LunrJsSearch
-    VERSION = "0.2.1"
-  end
-end
-module Jekyll
   module LunrJsSearch  
     class SearchIndexFile < Jekyll::StaticFile
       # Override write as the index.json index file has already been created 
@@ -147,16 +142,9 @@ module Jekyll
     end
   end
 end
-require "v8"
-require "json"
-
-class V8::Object
-  def to_json
-    @context['JSON']['stringify'].call(self)
-  end
-
-  def to_hash
-    JSON.parse(to_json, :max_nesting => false)
+module Jekyll
+  module LunrJsSearch
+    VERSION = "0.2.1"
   end
 end
 require 'nokogiri'
@@ -224,5 +212,17 @@ module Jekyll
         end.join(' ')
       end
     end
+  end
+end
+require "v8"
+require "json"
+
+class V8::Object
+  def to_json
+    @context['JSON']['stringify'].call(self)
+  end
+
+  def to_hash
+    JSON.parse(to_json, :max_nesting => false)
   end
 end
