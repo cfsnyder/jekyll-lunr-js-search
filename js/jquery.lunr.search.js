@@ -144,9 +144,7 @@
     options = $.extend({}, $.fn.lunrSearch.defaults, options);      
 
     // create search object
-    new LunrSearch(this, options);
-    
-    return this;
+    return new LunrSearch(this, options);
   };
   
   $.fn.lunrSearch.defaults = {
