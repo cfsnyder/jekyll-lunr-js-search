@@ -27,6 +27,7 @@
       this.$elem = elem;      
       this.results = [];
       this.indexDataUrl = options.indexUrl;
+      this.searchCallback = options.searchCallback;
       this.initialize();
     }
         
@@ -86,6 +87,7 @@
         this.results = $.map(this.index.search(query), function(result) {
           return $.grep(entries, function(entry) { return entry.id === parseInt(result.ref, 10); })[0];
         });
+	this.searchCallback(this.results);
       }
     };
     
@@ -112,5 +114,6 @@
   
   $.fn.lunrSearch.defaults = {
     indexUrl  : '/js/index.json',   // Url for the .json file containing search index data
+    searchCallback : function() {}
   };
 })(jQuery);

@@ -11364,6 +11364,7 @@ var lunr=function(t){var e=new lunr.Index;return e.pipeline.add(lunr.stopWordFil
       this.$elem = elem;      
       this.results = [];
       this.indexDataUrl = options.indexUrl;
+      this.searchCallback = options.searchCallback;
       this.initialize();
     }
         
@@ -11423,6 +11424,7 @@ var lunr=function(t){var e=new lunr.Index;return e.pipeline.add(lunr.stopWordFil
         this.results = $.map(this.index.search(query), function(result) {
           return $.grep(entries, function(entry) { return entry.id === parseInt(result.ref, 10); })[0];
         });
+	this.searchCallback(this.results);
       }
     };
     
@@ -11449,5 +11451,6 @@ var lunr=function(t){var e=new lunr.Index;return e.pipeline.add(lunr.stopWordFil
   
   $.fn.lunrSearch.defaults = {
     indexUrl  : '/js/index.json',   // Url for the .json file containing search index data
+    searchCallback : function() {}
   };
 })(jQuery);
